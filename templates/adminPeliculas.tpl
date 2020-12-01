@@ -36,7 +36,6 @@
                 <button type="submit" class="botonVisible"> <a href="borrar/{$pelicula->id}"> Borrar </a> </button>
                 <button type="submit" class="botonVisible"> <a href="editar/{$pelicula->id}"> Editar </a> </button>
         </div>
-    {* } *}
     {/if}
 {/foreach}
 <section class="contenedorPrincipalRegistro">

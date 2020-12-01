@@ -1,6 +1,5 @@
 <?php
     require_once 'Controller/peliculasYGeneroController.php';
-    //require_once 'Controller/TasksAdvanceController.php';
     require_once 'RouterClass.php';
     require_once 'Controller/userController.php';
     
@@ -10,7 +9,6 @@
     $r = new Router();
 
     // rutas
-    //$r->addRoute("home", "GET", "peliculasYGeneroController", "Home");//el primer parametro es lo que tipeas en URL, la ultima es la funcion que llamas en "peliculasYGeneroController"
     $r->addRoute("home/:PAGINA", "GET", "peliculasYGeneroController", "Home");
     $r->addRoute("generos", "GET", "peliculasYGeneroController", "Generos");//URL; METODO; clase; funcion a usar de la clase
     $r->addRoute("visualizarItem/:TITULO","GET","peliculasYGeneroController","VisualizarItem");

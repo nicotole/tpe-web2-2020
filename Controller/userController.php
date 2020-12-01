@@ -30,11 +30,8 @@ class userController{
                     $_SESSION['userName'] = $userFromDB->userName;
                     $_SESSION['email'] = $userFromDB->email;
                     $_SESSION['id'] = $userFromDB->id;
-                    //$_SESSION['contraseña'] =$userFromDB->password;
                     $_SESSION['superuser'] = $userFromDB->superUser;
-                    //echo $_SESSION['superuser'];
                     $this->view->ReLocalizar("home");
-                    //header("Location:".BASE_URL."/home");
                 }else{
                     $this->view->ShowLogIn("Contraseña incorrecta");
                 }
@@ -48,7 +45,6 @@ class userController{
         session_start();
         session_destroy();
         $this->view->ReLocalizar("home");
-        //header("Location:".BASE_URL."/home");
     }
 
     function Registrarse(){
@@ -62,13 +58,9 @@ class userController{
             session_start();
             $_SESSION['userName'] = $_POST['userName'];
             $_SESSION['email'] = $_POST['email'];
-            //$_SESSION['contraseña'] = $_POST['contraseña'];
             $_SESSION['id'] = $userFromDB->id;
             $_SESSION['superuser'] = $userFromDB->superUser;
-            //echo  $userFromDB->superUser;
-            //$_SESSION['superuser'] = 0;
             $this->view->ReLocalizar("home");
-            //header("Location:".BASE_URL."/home");
         }
     }
 
@@ -79,7 +71,6 @@ class userController{
             $this->view->AdminUsuarios($Usuarios);
         }else{
             $this->view->ReLocalizar("login");
-            //header("Location:".BASE_URL."/login");
         }
     }
 
@@ -90,10 +81,8 @@ class userController{
             $id = $params[":ID"];
             $this->model->BorrarUsuario($id);
             $this->view->ReLocalizar("adminUsuarios");
-            //header("Location:".BASE_URL."/adminUsuarios");
         }else{
             $this->view->ReLocalizar("login");
-            //header("Location:".BASE_URL."/login");
         }
     }
 
@@ -104,10 +93,8 @@ class userController{
             $this->model->SetSuperUsuario($id);
             $_SESSION['superuser'] = 1;
             $this->view->ReLocalizar("adminUsuarios");
-            //header("Location:".BASE_URL."/adminUsuarios");
         }else{
             $this->view->ReLocalizar("login");
-            //header("Location:".BASE_URL."/login");
         }
     }
 

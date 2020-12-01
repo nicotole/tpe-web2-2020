@@ -16,15 +16,6 @@ class peliculasYGeneroController{
         $this->modelGenero = new generoModel();
     }
 
-    // function Home(){
-    //     //echo "Home";
-    //     // $peliculas = $this->model->GetPeliculas();
-    //     // $generos = $this->model->GetGeneros();
-    //     // $this->view->ShowHome($peliculas, $generos);
-    //     $peliculasConGenero = $this->model->GetPeliculasConGenero();
-    //     $this->view->ShowHome($peliculasConGenero);
-    // }
-
      function Home($params){
         $itemFinal = 5;
         if($params != null){
@@ -68,14 +59,11 @@ class peliculasYGeneroController{
     function Administrar(){
         session_start();
         if ( isset($_SESSION['email']) && ( $_SESSION['superuser'] == 1 ) ){
-            // $peliculas = $this->model->GetPeliculas();
-            // $peliculasConGenero = $this->model->GetPeliculasConGenero();
             $peliculas = $this->model->GetPeliculasYGenero();
             $generos = $this->modelGenero->GetGeneros();
             $this->view->ShowAdministrar($peliculas, $generos);
         }else{
             $this->view->ReLocalizar("login");
-            //header("Location:".BASE_URL."/login");
         }
     }
 
@@ -87,7 +75,6 @@ class peliculasYGeneroController{
             $this->view->AdminPeliculas($peliculas, $generos);
         }else{
             $this->view->ReLocalizar("login");
-            //header("Location:".BASE_URL."/login");
         }
     }
 
@@ -98,7 +85,6 @@ class peliculasYGeneroController{
             $this->view->AdminGeneros($generos);
         }else{
             $this->view->ReLocalizar("login");
-            //header("Location:".BASE_URL."/login");
         }
     }
 
@@ -108,10 +94,8 @@ class peliculasYGeneroController{
             $pelicula_id = $params[':ID'];//Este id pasa magico desde el router como declaramos la ruta
             $this->model->BorrarPelicula($pelicula_id);//pasamos el id para que lo borre el model
             $this->view->ReLocalizar("adminPeliculas");
-            //header("Location:".BASE_URL."/adminPeliculas");//le hacemos recargar la pagina para que se vea el cambio    
         }else{
             $this->view->ReLocalizar("login");
-            //header("Location:".BASE_URL."/login");
         }
 
         
@@ -130,35 +114,20 @@ class peliculasYGeneroController{
         }
     }
 
-    // if($_FILES['input_name']['type'] == "image/jpg" || $_FILES['input_name']['type'] == "image/jpeg" || $_FILES['input_name']['type'] == "image/png" || …) 
-    //     $this->model->saveTask($titulo, $descripcion,  $_FILES['input_name']['tmp_name']);
-    // else{
-    //     $this->model->saveTask($titulo, $descripcion);
-    // }
-
     function EditarPelicula($params = null){
         session_start();
         if ( isset($_SESSION['email']) && ( $_SESSION['superuser'] == 1 ) ){
             $id_pelicula = $params[':ID'];
             $peliculas = $this->model->GetPeliculasYGenero();//pido toda la tabla de peliculas junto con la tambla de genero, viene todo en un arreglo
-            //print_r($peliculas[1]);
             $generos = $this->modelGenero->GetGeneros();
             $this->view->ShowEditPelicula($peliculas, $id_pelicula, $generos);
         }else{
             $this->view->ReLocalizar("login");
-            //header("Location:".BASE_URL."/login");
         }
     }
     
     function GuardarPelicula($params = null){
-        //print_r($_FILES);
-            //revisar si pos esta seteado
-        // echo("pase por el controller uhu");
         if(isset($_POST) && !is_null($_POST)){
-            //print_r($_POST);
-            //print_r($_FILES);
-            //print_r($_POST['imagen']);
-            //echo  $_FILES['imagen']['type'];
             if($_FILES['imagen']['type'] != null){
                 $this->model->EditarPeliculaConImg( $_POST['titulo'] , $_POST['sinopsis'] , $_POST['duracion'] , $_POST['puntuacion'] , $_POST['precio'], $_FILES['imagen']['tmp_name'], $params[':ID']);
             }else{
@@ -168,11 +137,10 @@ class peliculasYGeneroController{
             $this->view->ReLocalizar("adminPeliculas");
         }
     }
-//-----------
+
     function BorrarGenero($params = null){
         $this->modelGenero->BorrarGenero($params[':ID']);
         $this->view->ReLocalizar("adminGeneros");
-        // header("Location:".BASE_URL."/adminGeneros");
     }
 
     function EditarGenero($params = null){
@@ -183,28 +151,21 @@ class peliculasYGeneroController{
             $this->view->ShowEditGenero($peliculas, $generos, $params[':ID']);
         }else{
             $this->view->ReLocalizar("login");
-            //header("Location:".BASE_URL."/login");
         }
     }
 
     function GuardarGenero($params = null){
-        //revisar si pos esta seteado
         if(isset($_POST) && !is_null($_POST)){
             $this->modelGenero->GuardarGenero($_POST['nombre'], $params[':ID']);
             $this->view->ReLocalizar("adminGeneros");
-            //header("Location:".BASE_URL."/adminGeneros");
         }
     }
 
     function SubirGenero(){
-        //revisar si pos esta seteado
         if(isset($_POST) && !is_null($_POST)){
             $this->modelGenero->SubirGenero($_POST['nombre']);
             $this->view->ReLocalizar("adminGeneros");
-            //header("Location:".BASE_URL."/adminGeneros");
         }
     }
 
-
-   
 }

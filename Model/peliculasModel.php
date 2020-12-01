@@ -103,5 +103,4 @@ class peliculasModel{
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 
-
 }

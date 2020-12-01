@@ -10,16 +10,12 @@
         <li>Precio: {$item_s->precio} rupias</li>
     </ul>
 </div>
-{* <div class="pelicula"> *}
 
 {include file="vue/comentarios.vue"}
 {if isset($UserName_s)}
     {include file="vue/comentarForm.vue"} 
 {/if}
 
-
-{* </div> *}
-{* <script src="js/comentarios.js"></script> *}
 <script src="js/visitante.js"></script>
 {if (isset($superUser_s)) && (($superUser_s == 0) || ($superUser_s == 1))}
     <script src="js/usuario.js"></script>

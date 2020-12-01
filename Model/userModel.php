@@ -17,7 +17,6 @@ class userModel{
     function GetPelicula($titulo_pelicula){
         $sentencia = $this->db->prepare("SELECT * FROM peliculas WHERE titulo=?");
         $sentencia->execute(array($titulo_pelicula));
-        //print_r($sentencia->fetch(PDO::FETCH_OBJ)); 
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
 
@@ -50,5 +49,4 @@ class userModel{
         $sentencia->execute(array(0, $id));
     }
 
-    
 }

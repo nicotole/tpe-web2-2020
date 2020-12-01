@@ -5,8 +5,6 @@ require_once "./libs/smarty/Smarty.class.php";
 class userView{
 
     private $smarty;
-
-    //private $title;
     
     function __construct(){
        $this->smarty = new Smarty();
@@ -31,7 +29,6 @@ class userView{
             $this->smarty->display('templates/adminUsuarios.tpl');
         }else{
             $this->ReLocalizar("login");
-            //header("Location:".BASE_URL."/login");
         }
     }
 
