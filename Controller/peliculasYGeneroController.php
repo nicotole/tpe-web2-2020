@@ -49,16 +49,20 @@ class peliculasYGeneroController{
         if($pelicula_completa == true){
             $this->view->ShowItem($pelicula_completa);
         }else{
-            echo("no se encontro el elemento crack, hay que hacer esto de informar por pantalla bien");
+            $this->view->ShowError404();
         }
 
-        //var_dump($pelicula_completa);
     }
 
     function VisualizarGenero($params = null){
         $genero_nombre = $params[':GENERO'];
-        $peliculasPorGenero = $this->model->GetPeliculasPorGenero($genero_nombre);
-        $this->view->ShowPeliculasPorGenero($peliculasPorGenero, $genero_nombre); 
+        $Genero = $this->modelGenero->GetGeneroPorNombre($genero_nombre);
+        if(!empty($Genero)){
+            $peliculasPorGenero = $this->model->GetPeliculasPorGenero($genero_nombre);
+            $this->view->ShowPeliculasPorGenero($peliculasPorGenero, $genero_nombre);
+        }else{
+            $this->view->ShowError404();
+        }
     }
 
     function Administrar(){

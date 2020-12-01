@@ -15,6 +15,13 @@ class generoModel{
 
     }
 
+    function GetGeneroPorNombre($genero_nombre){
+        $sentencia = $this->db->prepare("SELECT * FROM genero WHERE nombre=?");
+        $sentencia->execute(array($genero_nombre));
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+    }
+
     function BorrarGenero($id){
         $sentencia = $this->db->prepare("DELETE FROM genero WHERE id_genero=?");
         $sentencia->execute(array($id));

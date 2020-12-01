@@ -21,7 +21,9 @@ class peliculasYGeneroView{
         $this->smarty->assign('totalDePaginas_s', $totalDePaginas);
         $this->smarty->display('templates/home.tpl'); // muestro el template 
     }
-
+    function ShowError404(){
+        $this->smarty->display('templates/error404.tpl'); 
+    }
 
     function ShowHomeLocation(){
         header(BASE_URL);
