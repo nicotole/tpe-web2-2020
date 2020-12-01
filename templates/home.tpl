@@ -8,5 +8,17 @@
         </ul>
     </div>
 {/foreach}            
-
+ <nav>
+    <ul  class="navigation" > 
+        <li><a href="home/1">Inicio</a></li> 
+        {for $i = 2 to $totalDePaginas_s - 1}
+            <li>
+                <a href="home/{$i}" >{$i}</a>
+            </li>
+        {/for}
+        {if $totalDePaginas_s > 1} 
+            <li><a href="home/{$totalDePaginas_s}" >Final</a></li>  
+        {/if} 
+    </ul>
+</nav>
 {include file="footer.tpl"}

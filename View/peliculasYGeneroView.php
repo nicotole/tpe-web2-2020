@@ -11,23 +11,17 @@ class peliculasYGeneroView{
        $this->smarty = new Smarty();
     }
 
-    function ShowHome($peliculasConGenero){
-        //$this->smarty->assign('titulo_s', $this->title);
-        //$this->smarty = new Smarty();
+    function ShowHome($peliculasConGenero, $totalDePaginas){
+
         session_start();
         if (isset($_SESSION['email'])){
-            //echo "está seteado";
-            //echo $_SESSION['superuser'];
-            //echo $_SESSION['email'];
-            // echo $_SESSION['userName'];
-            // $this->smarty->assign('UserEmail_s', $_SESSION['email']);
-            // $this->smarty->assign('UserName_s', $_SESSION['userName']);
-            // $this->smarty->assign('superUser_s', $_SESSION['superuser']);
             $this->setUserBasicsToSmarty();
         }
         $this->smarty->assign('peliculasConGenero_s', $peliculasConGenero);
+        $this->smarty->assign('totalDePaginas_s', $totalDePaginas);
         $this->smarty->display('templates/home.tpl'); // muestro el template 
     }
+
 
     function ShowHomeLocation(){
         header(BASE_URL);

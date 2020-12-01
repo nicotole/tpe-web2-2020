@@ -16,13 +16,26 @@ class peliculasYGeneroController{
         $this->modelGenero = new generoModel();
     }
 
-    function Home(){
-        //echo "Home";
-        // $peliculas = $this->model->GetPeliculas();
-        // $generos = $this->model->GetGeneros();
-        // $this->view->ShowHome($peliculas, $generos);
-        $peliculasConGenero = $this->model->GetPeliculasConGenero();
-        $this->view->ShowHome($peliculasConGenero);
+    // function Home(){
+    //     //echo "Home";
+    //     // $peliculas = $this->model->GetPeliculas();
+    //     // $generos = $this->model->GetGeneros();
+    //     // $this->view->ShowHome($peliculas, $generos);
+    //     $peliculasConGenero = $this->model->GetPeliculasConGenero();
+    //     $this->view->ShowHome($peliculasConGenero);
+    // }
+
+     function Home($params){
+        $itemFinal = 5;
+        if($params != null){
+            $itemInicio = ($params[':PAGINA'] - 1) * $itemFinal;
+        }else{
+            $itemInicio = 0;
+        }
+        $todasLasPeliculas = $this->model->GetPeliculas();
+        $totalDePaginas = ceil(count($todasLasPeliculas) / $itemFinal);
+        $peliculas = $this->model->GetPeliculasParaPaginacion($itemInicio, $itemFinal);
+        $this->view->ShowHome($peliculas, $totalDePaginas);
     }
 
     function Generos(){

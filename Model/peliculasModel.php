@@ -97,5 +97,11 @@ class peliculasModel{
         unlink($rutaDeImg);
     }
 
+    function GetPeliculasParaPaginacion($PaginaInicio, $PaginaFinal){
+        $sentencia = $this->db->prepare("SELECT * FROM genero , peliculas WHERE peliculas.id_genero = genero.id_genero LIMIT $PaginaInicio,  $PaginaFinal ");
+        $sentencia->execute();
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
+
 
 }
